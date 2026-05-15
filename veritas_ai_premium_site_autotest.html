@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Veritas AI — Platformă premium de verificare în timp real</title>
+  <style>
+    :root {
+      --black: #080808;
+      --dark: #111111;
+      --gray: #666666;
+      --light-gray: #f4f4f4;
+      --border: #dedede;
+      --white: #ffffff;
+      --blue: #0b5cff;
+      --blue-dark: #003fb5;
+      --green: #118a35;
+      --yellow-bg: #fff8e1;
+      --red-bg: #fff0f0;
+      --green-bg: #f0fff5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    header {
+      width: 100%;
+      padding: 22px 7%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -0.8px;
+    }
+
+    .logo span {
+      display: block;
+      font-size: 11px;
+      color: var(--gray);
+      font-weight: 500;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-top: 2px;
+    }
+
+    nav a {
+      color: var(--black);
+      text-decoration: none;
+      margin-left: 24px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      opacity: 0.55;
+    }
+
+    .header-action {
+      margin-left: 26px;
+      padding: 11px 17px;
+      background: var(--black);
+      color: var(--white);
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .hero {
+      padding: 90px 7% 75px;
+      display: grid;
+      grid-template-columns: 1.04fr 0.96fr;
+      gap: 48px;
+      align-items: center;
+      min-height: 720px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 9px 13px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      font-size: 13px;
+      color: var(--gray);
+      margin-bottom: 24px;
+      background: #fafafa;
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--black);
+      border-radius: 50%;
+    }
+
+    h1 {
+      font-size: clamp(45px, 6vw, 76px);
+      line-height: 0.97;
+      letter-spacing: -3px;
+      max-width: 820px;
+      margin-bottom: 26px;
+    }
+
+    .hero-text {
+      font-size: 18px;
+      line-height: 1.8;
+      color: #4d4d4d;
+      max-width: 680px;
+      margin-bottom: 34px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn {
+      border: none;
+      border-radius: 999px;
+      padding: 15px 22px;
+      font-size: 15px;
+      font-weight: 800;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-black {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--black);
+      border: 1px solid var(--border);
+    }
+
+    .btn-blue {
+      background: var(--blue);
+      color: var(--white);
+      box-shadow: 0 14px 35px rgba(11, 92, 255, 0.22);
+    }
+
+    .trust-line {
+      margin-top: 22px;
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .platform-card {
+      background: #f7f7f7;
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: 22px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.08);
+    }
+
+    .screen {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      overflow: hidden;
+    }
+
+    .screen-top {
+      padding: 18px 20px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .screen-title {
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .live-badge {
+      padding: 7px 10px;
+      background: var(--black);
+      color: var(--white);
+      font-size: 12px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .dashboard {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 14px;
+    }
+
+    .mini-panel {
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 17px;
+      background: #fbfbfb;
+    }
+
+    .mini-panel h3 {
+      font-size: 14px;
+      margin-bottom: 14px;
+    }
+
+    .number {
+      font-size: 38px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      margin-bottom: 5px;
+    }
+
+    .mini-text {
+      color: var(--gray);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .feed {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .feed-item {
+      padding: 13px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: var(--white);
+    }
+
+    .feed-item strong {
+      display: block;
+      font-size: 13px;
+      margin-bottom: 5px;
+    }
+
+    .feed-item p {
+      color: var(--gray);
+      font-size: 12.5px;
+      line-height: 1.45;
+    }
+
+    .stats-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      margin-top: 10px;
+    }
+
+    .stat {
+      padding: 30px 7%;
+      border-right: 1px solid var(--border);
+    }
+
+    .stat:last-child {
+      border-right: none;
+    }
+
+    .stat strong {
+      font-size: 34px;
+      display: block;
+      letter-spacing: -1px;
+      margin-bottom: 6px;
+    }
+
+    .stat span {
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    section {
+      padding: 80px 7%;
+    }
+
+    .section-heading {
+      max-width: 850px;
+      margin-bottom: 42px;
+    }
+
+    .section-heading.center {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: clamp(36px, 4.5vw, 58px);
+      line-height: 1.02;
+      letter-spacing: -2px;
+      margin-bottom: 18px;
+    }
+
+    .section-heading p {
+      color: #555;
+      line-height: 1.8;
+      font-size: 17px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature {
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 28px;
+      background: #fbfbfb;
+      min-height: 255px;
+    }
+
+    .feature .icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      background: var(--black);
+      color: var(--white);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      margin-bottom: 22px;
+    }
+
+    .feature h3 {
+      font-size: 20px;
+      margin-bottom: 12px;
+      letter-spacing: -0.4px;
+    }
+
+    .feature p {
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .black-section {
+      background: var(--black);
+      color: var(--white);
+      border-radius: 42px;
+      margin: 0 3%;
+      padding: 70px 4%;
+    }
+
+    .black-section p {
+      color: #c9c9c9;
+    }
+
+    .modules {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-top: 38px;
+    }
+
+    .module {
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 22px;
+      padding: 24px;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .module h3 {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .module p {
+      line-height: 1.7;
+    }
+
+    .timeline {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .process-card {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 30px;
+      background: #fafafa;
+    }
+
+    .step {
+      padding: 19px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .step:last-child {
+      border-bottom: none;
+    }
+
+    .step strong {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 17px;
+    }
+
+    .step p {
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .notice {
+      background: #f2f2f2;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 25px;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    .assessment-shell {
+      background: #f8f8f8;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .assessment-wrap {
+      display: grid;
+      grid-template-columns: 0.78fr 1.22fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .assessment-info,
+    .quiz-card,
+    .result-card {
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: var(--white);
+      padding: 30px;
+    }
+
+    .assessment-info h2 {
+      font-size: clamp(32px, 4vw, 52px);
+    }
+
+    .assessment-info p,
+    .quiz-intro,
+    .result-card p {
+      color: #555;
+      line-height: 1.8;
+      font-size: 16px;
+    }
+
+    .small-disclaimer {
+      margin-top: 20px;
+      background: #f3f3f3;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      color: #4f4f4f;
+      line-height: 1.65;
+      font-size: 14px;
+    }
+
+    .progress-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: center;
+      margin: 22px 0;
+      color: var(--gray);
+      font-size: 14px;
+    }
+
+    .progress-track {
+      height: 10px;
+      background: #e8e8e8;
+      border-radius: 999px;
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: var(--black);
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+
+    .question {
+      padding: 24px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .question h3 {
+      font-size: 18px;
+      line-height: 1.5;
+      margin-bottom: 16px;
+      letter-spacing: -0.2px;
+    }
+
+    .answers {
+      display: grid;
+      gap: 12px;
+    }
+
+    .answer {
+      display: grid;
+      grid-template-columns: 38px 1fr;
+      align-items: center;
+      gap: 12px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 14px;
+      cursor: pointer;
+      background: #fbfbfb;
+      transition: 0.2s ease;
+      user-select: none;
+    }
+
+    .answer:hover {
+      border-color: #b9b9b9;
+      background: #f6f6f6;
+    }
+
+    .answer input {
+      display: none;
+    }
+
+    .letter {
+      width: 34px;
+      height: 34px;
+      border: 2px solid #bdbdbd;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      color: #333;
+      background: var(--white);
+      transition: 0.2s ease;
+    }
+
+    .answer input:checked + .letter {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .answer-text {
+      color: #333;
+      line-height: 1.5;
+    }
+
+    .quiz-actions {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding-top: 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .helper-error {
+      color: #b00020;
+      font-weight: 700;
+      display: none;
+      font-size: 14px;
+    }
+
+    .loader-area {
+      display: none;
+      align-items: center;
+      gap: 13px;
+      color: var(--blue);
+      font-weight: 800;
+      margin-top: 18px;
+    }
+
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 4px solid #dce7ff;
+      border-top: 4px solid var(--blue);
+      border-radius: 50%;
+      animation: spin 0.85s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .result-card {
+      display: none;
+      margin-top: 22px;
+      border-color: #cfdcff;
+      box-shadow: 0 28px 70px rgba(11, 92, 255, 0.10);
+    }
+
+    .result-badge {
+      display: inline-block;
+      padding: 9px 13px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 900;
+      margin-bottom: 16px;
+      background: #eef4ff;
+      color: var(--blue-dark);
+      border: 1px solid #cbdcff;
+    }
+
+    .score-line {
+      margin: 14px 0 22px;
+      font-size: 18px;
+      font-weight: 900;
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .result-box {
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px;
+      background: #fbfbfb;
+    }
+
+    .result-box strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .result-box span {
+      color: var(--gray);
+      line-height: 1.6;
+      display: block;
+    }
+
+    .life-message {
+      margin-top: 22px;
+      padding: 22px;
+      border-radius: 22px;
+      background: #f1f6ff;
+      border: 1px solid #d8e5ff;
+      color: #243b6b;
+      line-height: 1.8;
+    }
+
+    .pricing {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .price-card {
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 28px;
+      background: #fbfbfb;
+    }
+
+    .price-card.featured {
+      background: var(--black);
+      color: var(--white);
+      transform: translateY(-12px);
+    }
+
+    .price-card h3 {
+      font-size: 22px;
+      margin-bottom: 14px;
+    }
+
+    .price {
+      font-size: 42px;
+      font-weight: 900;
+      letter-spacing: -1.5px;
+      margin-bottom: 16px;
+    }
+
+    .price span {
+      font-size: 14px;
+      font-weight: 500;
+      color: inherit;
+      opacity: 0.65;
+    }
+
+    .price-card p {
+      color: var(--gray);
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .price-card.featured p {
+      color: #cfcfcf;
+    }
+
+    .list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      color: #4e4e4e;
+      font-size: 15px;
+    }
+
+    .price-card.featured .list {
+      color: #e2e2e2;
+    }
+
+    .list li::before {
+      content: "✓";
+      font-weight: 900;
+      margin-right: 9px;
+    }
+
+    .contact-box {
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+      background: #fbfbfb;
+    }
+
+    form.contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+    }
+
+    input.text-field, textarea, select {
+      width: 100%;
+      padding: 15px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      color: var(--black);
+      font-size: 15px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    footer {
+      padding: 32px 7%;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      color: var(--gray);
+      font-size: 14px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 980px) {
+      nav {
+        display: none;
+      }
+
+      .hero,
+      .timeline,
+      .contact-box,
+      .assessment-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .features,
+      .pricing,
+      .stats-strip,
+      .modules,
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .stat:last-child {
+        border-bottom: none;
+      }
+
+      h1 {
+        letter-spacing: -1.6px;
+      }
+
+      .price-card.featured {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      Veritas AI
+      <span>Real-time Intelligence Platform</span>
+    </div>
+    <nav>
+      <a href="#beneficii">Beneficii</a>
+      <a href="#module">Module</a>
+      <a href="#proces">Cum funcționează</a>
+      <a href="#autotest">Auto-test</a>
+      <a href="#planuri">Planuri</a>
+      <a class="header-action" href="#contact">Solicită demo</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Platformă premium de verificare și monitorizare</div>
+        <h1>Inteligență artificială pentru verificări în timp real.</h1>
+        <p class="hero-text">
+          Veritas AI este o simulare de platformă web premium, alb-negru, construită pentru a urmări informații,
+          știri, plăți, documente, comenzi, riscuri, semnale publice și date importante din mai multe surse.
+          Ideea este simplă: un singur loc unde AI-ul verifică, compară și îți arată ce contează.
+        </p>
+        <div class="buttons">
+          <a href="#beneficii" class="btn btn-black">Vezi beneficiile</a>
+          <a href="#autotest" class="btn btn-white">Încearcă auto-testul</a>
+        </div>
+        <div class="trust-line">Simulare HTML — design premium, curat, fără stil de hacking.</div>
+      </div>
+
+      <div class="platform-card">
+        <div class="screen">
+          <div class="screen-top">
+            <div class="screen-title">Live Intelligence Center</div>
+            <div class="live-badge">LIVE</div>
+          </div>
+          <div class="dashboard">
+            <div class="mini-panel">
+              <h3>Verificări active</h3>
+              <div class="number">2.481</div>
+              <p class="mini-text">Surse analizate în ultimele minute.</p>
+            </div>
+            <div class="feed">
+              <div class="feed-item">
+                <strong>Știri & semnale publice</strong>
+                <p>AI-ul compară informațiile apărute recent și marchează subiectele importante.</p>
+              </div>
+              <div class="feed-item">
+                <strong>Plăți & tranzacții</strong>
+                <p>Verificare status: inițiat, confirmat, respins sau necesită analiză manuală.</p>
+              </div>
+              <div class="feed-item">
+                <strong>Documente & identitate</strong>
+                <p>Detectare lipsuri, diferențe, erori sau date care necesită confirmare.</p>
+              </div>
+              <div class="feed-item">
+                <strong>Recomandare AI</strong>
+                <p>Prioritizează cazurile urgente și trimite alertă către operator.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats-strip">
+      <div class="stat"><strong>24/7</strong><span>Monitorizare continuă</span></div>
+      <div class="stat"><strong>360°</strong><span>Analiză din mai multe surse</span></div>
+      <div class="stat"><strong>AI</strong><span>Recomandări automate</span></div>
+      <div class="stat"><strong>LIVE</strong><span>Alerte în timp real</span></div>
+    </div>
+
+    <section id="beneficii">
+      <div class="section-heading center">
+        <h2>O platformă care verifică aproape orice contează.</h2>
+        <p>
+          Gândită ca un centru general de inteligență artificială: nu doar un site de știri, nu doar un panou de suport,
+          nu doar un verificator de documente, ci o platformă care combină mai multe funcții într-o singură interfață.
+        </p>
+      </div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="icon">01</div>
+          <h3>Verificare în timp real</h3>
+          <p>Monitorizează informații, statusuri, alerte și schimbări importante fără să cauți manual prin mai multe site-uri.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">02</div>
+          <h3>Analiză de știri</h3>
+          <p>Centralizează subiecte importante, detectează tendințe și poate marca informațiile care necesită atenție.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">03</div>
+          <h3>Verificare documente</h3>
+          <p>Poate analiza documente, dovezi, capturi, facturi, tranzacții și mesaje pentru a evidenția posibile probleme.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">04</div>
+          <h3>Monitorizare business</h3>
+          <p>Urmărește comenzi, clienți, plăți, dispute, produse, rapoarte și activități administrative.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">05</div>
+          <h3>Alerte inteligente</h3>
+          <p>Trimite notificări când ceva pare urgent: o plată blocată, o știre importantă sau o diferență într-un document.</p>
+        </div>
+        <div class="feature">
+          <div class="icon">06</div>
+          <h3>Rezumat rapid</h3>
+          <p>Transformă informațiile lungi în concluzii simple: ce s-a întâmplat, ce risc există și ce acțiune este recomandată.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="black-section" id="module">
+      <div class="section-heading">
+        <h2>Module principale integrate într-un singur sistem.</h2>
+        <p>
+          În loc să folosești multe platforme separate, Veritas AI simulează un sistem unic care adună, verifică și explică informația.
+        </p>
+      </div>
+
+      <div class="modules">
+        <div class="module">
+          <h3>News Radar</h3>
+          <p>Urmărește știri, subiecte virale, modificări importante și alerte publice din surse multiple.</p>
+        </div>
+        <div class="module">
+          <h3>Payment Check</h3>
+          <p>Verifică plăți, statusuri, rambursări, dispute și confirmări manuale pentru comenzi.</p>
+        </div>
+        <div class="module">
+          <h3>Document Review</h3>
+          <p>Analizează dovezi, facturi, contracte, capturi, emailuri și documente încărcate în sistem.</p>
+        </div>
+        <div class="module">
+          <h3>Risk Signals</h3>
+          <p>Detectează lucruri suspecte, informații contradictorii, lipsuri sau cazuri care trebuie escalate.</p>
+        </div>
+        <div class="module">
+          <h3>Client Support AI</h3>
+          <p>Ajută operatorii să răspundă profesional, să rezume cazuri și să decidă următorul pas.</p>
+        </div>
+        <div class="module">
+          <h3>Wellbeing Check</h3>
+          <p>Include auto-teste orientative pentru obiceiuri, autocontrol, timp pierdut și tipare repetitive.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="proces">
+      <div class="timeline">
+        <div class="section-heading">
+          <h2>Cum funcționează platforma?</h2>
+          <p>
+            Sistemul primește informații, le compară, le verifică și oferă o concluzie clară. Totul este prezentat într-un stil premium,
+            simplu de înțeles, fără interfață complicată.
+          </p>
+          <div class="notice">
+            Acesta este un model demonstrativ HTML. Auto-testul este funcțional local în browser, dar rezultatul lui este orientativ,
+            nu reprezintă diagnostic medical sau psihologic.
+          </div>
+        </div>
+
+        <div class="process-card">
+          <div class="step">
+            <strong>1. Colectare informații</strong>
+            <p>Platforma primește date din formulare, documente, fluxuri, știri sau panouri interne.</p>
+          </div>
+          <div class="step">
+            <strong>2. Analiză automată</strong>
+            <p>AI-ul citește, compară și marchează informațiile importante sau neclare.</p>
+          </div>
+          <div class="step">
+            <strong>3. Scor de risc</strong>
+            <p>Cazurile primesc un nivel de prioritate: normal, atenție, urgent sau necesită verificare umană.</p>
+          </div>
+          <div class="step">
+            <strong>4. Recomandare finală</strong>
+            <p>Sistemul oferă o concluzie scurtă și pașii recomandați pentru următoarea acțiune.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="assessment-shell" id="autotest">
+      <div class="assessment-wrap">
+        <div class="assessment-info">
+          <div class="eyebrow"><span class="dot"></span> Modul funcțional</div>
+          <h2>Auto-test pentru obiceiuri repetitive și autocontrol.</h2>
+          <p>
+            Acest test grilă simulează o verificare orientativă pentru persoane care vor să înțeleagă dacă pornografia,
+            masturbarea excesivă sau alte obiceiuri repetitive le afectează timpul, energia, relațiile sau disciplina.
+          </p>
+          <div class="small-disclaimer">
+            [Psihologie clinică] Rezultatul nu este diagnostic. Este doar un semnal orientativ. Dacă un comportament îți afectează viața,
+            somnul, relațiile, școala, munca sau controlul de sine, discută cu un psiholog, medic sau consilier.
+          </div>
+        </div>
+
+        <div>
+          <form id="quizForm" class="quiz-card">
+            <h2 style="font-size: 34px; margin-bottom: 10px;">Test grilă</h2>
+            <p class="quiz-intro">
+              Alege răspunsul A, B sau C la fiecare întrebare. După ce trimiți lucrarea, apare o încărcare albastră,
+              apoi primești analiza orientativă.
+            </p>
+
+            <div class="progress-row">
+              <span id="progressText">0 din 8 completate</span>
+              <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+            </div>
+
+            <div class="question">
+              <h3>1. Cât de des simți că pierzi mai mult timp decât ți-ai propus cu acest obicei?</h3>
+              <div class="answers">
+                <label class="answer"><input type="radio" name="q1" value="0"><span class="letter">A</span><span class="answer-text">Rar sau aproape niciodată.</span></label>
+                <label class="answer"><input type="radio" name="q1" value="1"><span class="letter">B</span><span class="answer-text">Uneori, dar încă pot opri situația.</span></label>
+                <label class="answer"><input type="radio" name="q1" value="2"><span class="letter">C</span><span class="answer-text">Des, iar apoi regret timpul pierdut.</span></label>
+              </div>
+            </div>
+
+            <div class="question">
+              <h3>2. Ai încercat să reduci sau să te oprești, dar ai revenit rapid la același comportament?</h3>
+              <div class="answers">
+                <label class="answer"><input type="radio" name="q2" value="0"><span class="letter">A</span><span class="answer-text">Nu, pot reduce când vreau.</span></label>
+                <label class="answer"><input type="radio" name="q2" value="1"><span class="letter">B</span><span class="answer-text">Da, uneori mi se întâmplă.</span></label>
+                <label class="answer"><input type="radio" name="q2" value="2"><span class="letter">C</span><span class="answer-text">Da, de mai multe ori și îmi este greu să controlez.</span></label>
+              </div>
+            </div>
+
+            <div class="question">
+              <h3>3. Comportamentul acesta îți afectează concentrarea, energia sau motivația?</h3>
+              <div class="answers">
+                <label class="answer"><input type="radio" name="q3" value="0"><span class="letter">A</span><span class="answer-text">Nu observ efecte importante.</span></label>
+                <label class="answer"><input type="radio" name="q3" value="1"><span class="letter">B</span><span class="answer-text">Uneori mă simt mai obosit sau distras.</span></label>
+                <label class="answer"><input type="radio" name="q3" value="2"><span class="letter">C</span><span class="answer-text">Da, îmi afectează clar disciplina și concentrarea.</span></label>
+              </div>
+            </div>
+
+            <div class="question">
+              <h3>4. Îl folosești ca să scapi de stres, singurătate, plictiseală sau emoții neplăcute?</h3>
+              <div class="answers">
+                <label class="answer"><input type="radio" name="q4" value="0"><span class="letter">A</span><span class="answer-text">Nu, nu este o metodă principală pentru mine.</span></label>
+                <label class="answer"><input type="radio" name="q4" value="1"><span class="letter">B</span><span class="answer-text">Uneori, când sunt stresat sau plictisit.</span></label>
+                <label class="answer"><input type="radio" name="q4" value="2"><span class="letter">C</span><span class="answer-text">Da, îl folosesc des ca mecanism de evitare.</span></label>
+              </div>
+            </div>
+
+            <div class="question">
+              <h3>5. Ai început să ai nevoie de conținut mai des, mai mult sau mai intens pentru același efect?</h3>
+              <div class="answers">
+                <label class="answer"><input type="radio" name="q5" value="0"><span class="letter">A</span><span class="answer-text">Nu.</span></label>
+                <label class="answer"><input type="radio" name="q5" value="1"><span class="letter">B</span><span class="answer-text">Uneori observ că am nevoie de mai mult timp.</span></label>
+                <label class="answer"><input type="radio" name="q5" value="2"><span class="letter">C</span><span class="answer-text">Da, observ o creștere clară a nevoii sau intensității.</span></label>
+              </div>
+            </div>
+
+            <div class="question">
+              <h3>6. Comportamentul acesta a afectat relații, muncă, școală, somn sau planuri personale?</h3>
+              <div class="answers">
+                <label class="answer"><input type="radio" name="q6" value="0"><span class="letter">A</span><span class="answer-text">Nu, nu a afectat lucruri importante.</span></label>
+                <label class="answer"><input type="radio" name="q6" value="1"><span class="letter">B</span><span class="answer-text">Puțin, dar încă pot gestiona.</span></label>
+                <label class="answer"><input type="radio" name="q6" value="2"><span class="letter">C</span><span class="answer-text">Da, a început să-mi creeze probleme reale.</span></label>
+              </div>
+            </div>
+
+            <div class="question">
+              <h3>7. După ce faci acest lucru, apar vinovăție, rușine, anxietate sau promisiuni că „de mâine mă opresc”?</h3>
+              <div class="answers">
+                <label class="answer"><input type="radio" name="q7" value="0"><span class="letter">A</span><span class="answer-text">Rar sau deloc.</span></label>
+                <label class="answer"><input type="radio" name="q7" value="1"><span class="letter">B</span><span class="answer-text">Uneori.</span></label>
+                <label class="answer"><input type="radio" name="q7" value="2"><span class="letter">C</span><span class="answer-text">Des, iar ciclul se repetă.</span></label>
+              </div>
+            </div>
+
+            <div class="question">
+              <h3>8. Când nu ai acces sau încerci să reduci, devii agitat, iritat sau simți impuls puternic?</h3>
+              <div class="answers">
+                <label class="answer"><input type="radio" name="q8" value="0"><span class="letter">A</span><span class="answer-text">Nu, pot trece peste ușor.</span></label>
+                <label class="answer"><input type="radio" name="q8" value="1"><span class="letter">B</span><span class="answer-text">Uneori simt impuls, dar îl pot controla.</span></label>
+                <label class="answer"><input type="radio" name="q8" value="2"><span class="letter">C</span><span class="answer-text">Da, impulsul este puternic și greu de controlat.</span></label>
+              </div>
+            </div>
+
+            <div class="quiz-actions">
+              <div class="helper-error" id="errorText">Completează toate întrebările înainte să trimiți lucrarea.</div>
+              <button class="btn btn-blue" type="submit">Trimite lucrarea</button>
+            </div>
+
+            <div class="loader-area" id="loaderArea">
+              <div class="spinner"></div>
+              <span>Se analizează răspunsurile...</span>
+            </div>
+          </form>
+
+          <div class="result-card" id="resultCard">
+            <span class="result-badge" id="resultBadge">Rezultat orientativ</span>
+            <h2 id="resultTitle" style="font-size: 34px;">Analiza ta</h2>
+            <div class="score-line" id="scoreLine"></div>
+            <p id="resultDescription"></p>
+
+            <div class="result-grid">
+              <div class="result-box">
+                <strong>Ce pare să fie problema principală</strong>
+                <span id="mainProblem"></span>
+              </div>
+              <div class="result-box">
+                <strong>Recomandare practică</strong>
+                <span id="recommendation"></span>
+              </div>
+            </div>
+
+            <div class="life-message" id="lifeMessage"></div>
+
+            <div class="buttons" style="margin-top: 22px;">
+              <button class="btn btn-black" id="resetQuiz" type="button">Refă testul</button>
+              <button class="btn btn-white" onclick="window.print()" type="button">Printează rezultatul</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="planuri">
+      <div class="section-heading center">
+        <h2>Planuri demonstrative</h2>
+        <p>Exemplu de structură premium pentru un SaaS AI, potrivit pentru o prezentare sau pentru un landing page.</p>
+      </div>
+
+      <div class="pricing">
+        <div class="price-card">
+          <h3>Start</h3>
+          <div class="price">€49 <span>/ lună</span></div>
+          <p>Pentru verificări simple și un volum mic de solicitări.</p>
+          <ul class="list">
+            <li>Dashboard de bază</li>
+            <li>Rezumat AI</li>
+            <li>Monitorizare limitată</li>
+            <li>Export rapoarte</li>
+          </ul>
+        </div>
+
+        <div class="price-card featured">
+          <h3>Professional</h3>
+          <div class="price">€149 <span>/ lună</span></div>
+          <p>Pentru afaceri care au nevoie de monitorizare continuă și verificări complexe.</p>
+          <ul class="list">
+            <li>Verificări în timp real</li>
+            <li>Alerte inteligente</li>
+            <li>Analiză documente</li>
+            <li>Prioritizare cazuri</li>
+          </ul>
+        </div>
+
+        <div class="price-card">
+          <h3>Enterprise</h3>
+          <div class="price">Custom</div>
+          <p>Pentru companii care vor module personalizate și integrare completă.</p>
+          <ul class="list">
+            <li>Module personalizate</li>
+            <li>Utilizatori multipli</li>
+            <li>Fluxuri interne</li>
+            <li>Suport dedicat</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="contact-box">
+        <div>
+          <h2>Solicită acces demo</h2>
+          <p class="hero-text">
+            Completează formularul pentru o simulare. Într-o versiune reală, aici ai putea conecta un panou de administrator,
+            surse de știri, verificări de plăți, documente și alerte AI.
+          </p>
+        </div>
+
+        <form class="contact-form" onsubmit="event.preventDefault(); alert('Simulare: cererea a fost trimisă către Veritas AI.');">
+          <input class="text-field" type="text" placeholder="Nume complet" required />
+          <input class="text-field" type="email" placeholder="Email" required />
+          <select>
+            <option>Ce vrei să verifici?</option>
+            <option>Știri și informații publice</option>
+            <option>Plăți și tranzacții</option>
+            <option>Documente și dovezi</option>
+            <option>Comenzi, clienți și suport</option>
+            <option>Auto-testuri și wellbeing</option>
+            <option>Toate modulele</option>
+          </select>
+          <textarea placeholder="Descrie pe scurt ce ai vrea să facă platforma..."></textarea>
+          <button class="btn btn-black" type="submit">Trimite cererea</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© 2026 Veritas AI — platformă demonstrativă HTML</div>
+    <div>Design premium alb-negru · Auto-test funcțional local · Fără date reale</div>
+  </footer>
+
+  <script>
+    const totalQuestions = 8;
+    const quizForm = document.getElementById("quizForm");
+    const progressText = document.getElementById("progressText");
+    const progressFill = document.getElementById("progressFill");
+    const errorText = document.getElementById("errorText");
+    const loaderArea = document.getElementById("loaderArea");
+    const resultCard = document.getElementById("resultCard");
+    const resultBadge = document.getElementById("resultBadge");
+    const resultTitle = document.getElementById("resultTitle");
+    const scoreLine = document.getElementById("scoreLine");
+    const resultDescription = document.getElementById("resultDescription");
+    const mainProblem = document.getElementById("mainProblem");
+    const recommendation = document.getElementById("recommendation");
+    const lifeMessage = document.getElementById("lifeMessage");
+    const resetQuiz = document.getElementById("resetQuiz");
+
+    function updateProgress() {
+      let answered = 0;
+      for (let i = 1; i <= totalQuestions; i++) {
+        if (document.querySelector(`input[name="q${i}"]:checked`)) {
+          answered++;
+        }
+      }
+      progressText.textContent = `${answered} din ${totalQuestions} completate`;
+      progressFill.style.width = `${(answered / totalQuestions) * 100}%`;
+      if (answered === totalQuestions) {
+        errorText.style.display = "none";
+      }
+    }
+
+    document.querySelectorAll('#quizForm input[type="radio"]').forEach(input => {
+      input.addEventListener("change", updateProgress);
+    });
+
+    function getAnswerValue(questionNumber) {
+      const selected = document.querySelector(`input[name="q${questionNumber}"]:checked`);
+      return selected ? Number(selected.value) : null;
+    }
+
+    function buildResult(score, answers) {
+      const emotionalUse = answers[4] || 0;
+      const lossControl = (answers[1] || 0) + (answers[2] || 0) + (answers[8] || 0);
+      const lifeImpact = (answers[3] || 0) + (answers[6] || 0) + (answers[7] || 0);
+      const escalation = answers[5] || 0;
+
+      let category, title, description, problem, advice, message;
+
+      if (score <= 5) {
+        category = "Nivel scăzut";
+        title = "Nu apar semne puternice de dependență";
+        description = "Răspunsurile tale arată că, în acest moment, obiceiul pare mai degrabă controlabil. Totuși, merită să fii atent la timp, energie și la motivele pentru care revii la acest comportament.";
+        problem = "Tendință ușoară sau control bun. Nu pare să existe afectare majoră a vieții de zi cu zi.";
+        advice = "Păstrează limite clare: program, somn, sport, muncă/școală și pauze de la conținutul care te stimulează excesiv.";
+        message = "Viața nu se construiește din perfecțiune, ci din direcție. Chiar și atunci când nu ai o problemă mare, disciplina mică de azi îți protejează libertatea de mâine.";
+      } else if (score <= 10) {
+        category = "Nivel moderat";
+        title = "Există semne de obicei repetitiv cu risc de pierdere a controlului";
+        description = "Rezultatul arată că obiceiul începe să consume timp, atenție sau energie. Nu înseamnă automat dependență, dar este un semnal bun să pui limite înainte să devină mai greu.";
+        problem = emotionalUse >= 1 ? "Folosire ca metodă de evitare a stresului, plictiselii sau emoțiilor neplăcute." : "Timp pierdut și dificultate parțială de control.";
+        advice = "Alege o perioadă de 14 zile cu reguli clare: fără acces în momentele de plictiseală, telefonul departe seara, activitate fizică și monitorizare zilnică.";
+        message = "Nu trebuie să te definească un obicei. Faptul că îl observi este deja un pas înainte. Schimbarea devine reală când nu mai negociezi cu impulsul în fiecare zi, ci îți construiești un mediu care te ajută.";
+      } else {
+        category = "Nivel ridicat";
+        title = "Apar semne puternice de comportament compulsiv";
+        description = "Răspunsurile indică pierdere de control, repetare, posibilă afectare a energiei sau a vieții personale. Acest rezultat nu este diagnostic, dar merită luat în serios.";
+        problem = lifeImpact >= 4 ? "Impact asupra vieții de zi cu zi: concentrare, energie, somn, relații, muncă sau școală." : "Impuls puternic, revenire repetată și dificultate de oprire.";
+        advice = "Caută sprijin real: psiholog, consilier sau o persoană matură de încredere. Elimină trigger-ele, blochează accesul ușor și stabilește un plan zilnic concret.";
+        message = "Când un obicei începe să conducă în locul tău, soluția nu este rușinea, ci recâștigarea controlului pas cu pas. Nu ești obligat să schimbi totul într-o singură zi. Începe cu următoarea alegere bună, apoi repet-o.";
+      }
+
+      if (lossControl >= 5) {
+        problem += " Se observă și o dificultate importantă de autocontrol.";
+      }
+
+      if (escalation === 2) {
+        advice += " Redu expunerea la conținut intens și evită căutarea de stimuli mai puternici.";
+      }
+
+      return { category, title, description, problem, advice, message };
+    }
+
+    quizForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      let score = 0;
+      let answers = {};
+      let completed = true;
+
+      for (let i = 1; i <= totalQuestions; i++) {
+        const value = getAnswerValue(i);
+        if (value === null) {
+          completed = false;
+          break;
+        }
+        answers[i] = value;
+        score += value;
+      }
+
+      if (!completed) {
+        errorText.style.display = "block";
+        resultCard.style.display = "none";
+        return;
+      }
+
+      errorText.style.display = "none";
+      resultCard.style.display = "none";
+      loaderArea.style.display = "flex";
+
+      setTimeout(() => {
+        const result = buildResult(score, answers);
+
+        loaderArea.style.display = "none";
+        resultCard.style.display = "block";
+        resultBadge.textContent = result.category;
+        resultTitle.textContent = result.title;
+        scoreLine.textContent = `Scor orientativ: ${score} din 16`;
+        resultDescription.textContent = result.description;
+        mainProblem.textContent = result.problem;
+        recommendation.textContent = result.advice;
+        lifeMessage.textContent = result.message;
+
+        resultCard.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 1400);
+    });
+
+    resetQuiz.addEventListener("click", function() {
+      quizForm.reset();
+      updateProgress();
+      resultCard.style.display = "none";
+      loaderArea.style.display = "none";
+      errorText.style.display = "none";
+      quizForm.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+
+    updateProgress();
+  </script>
+</body>
+</html>
